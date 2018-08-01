@@ -1,0 +1,76 @@
+<div class='container'>
+  <div class='input-div'>
+    
+    <h3>Yeast</h3>
+
+    <div style='display: block;'>
+    {% for column in yeast_columns %}
+
+        {% if column == 'yeast_name' %}
+            <div style='display: iblock;'>
+                <label style='display: block;'>{{ column|capitalize }}</label>
+                <select name='{{ column }}'>      
+                    {% for ingredient in Yeast %}
+                        <option> {{ ingredient.yeastStrain }}</option>  
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <div style='display: block;'>
+                <label style='display: block;'>{{ column|capitalize }}</label>
+                <input type=text size=10 name={{ column }} value=0>
+            </div>
+        {% endif %}
+
+
+    {% endfor %}
+    </div>
+    
+        <!--
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Yeast Name</label>
+          <input type=text size=10 name=yeast_name value="Safale US-05">
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Attenuation</label>
+          <input type=text size=10 name=attenuation value=70.0>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>ABV</label>
+          <input type=text size=10 name=abv value=5>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>OG</label>
+          <input type=text size=10 name=og value=1.050>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>FG</label>
+          <input type=text size=10 name=fg value=1.010>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Initial Cells</label>
+          <input type=text size=10 name=init_cells value=9>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Pitched Cells</label>
+          <input type=text size=10 name=pitched_cells value=25>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Liters for Starter</label>
+          <input type=text size=10 name=liters_for_starter value=25>
+        </div>
+        -->
+      
+
+  </div>
+
+  <div class='app-div'>stuff</div>
+
+</div>

@@ -110,6 +110,7 @@ class Recipe(db.Model):
     # Columns
     id = db.Column(db.Integer, primary_key=True)
     recipe = db.Column(db.String(64))
+    style = db.Column(db.String(64))
     # Relationships
     fermentables = db.relationship('Recipe_Fermentables', backref='gb_recipe_master', cascade="all, delete-orphan" , lazy='dynamic')
     hops = db.relationship('Recipe_Hops', backref='gb_recipe_master', cascade="all, delete-orphan" , lazy='dynamic')
@@ -145,7 +146,6 @@ class Recipe_Fermentables(db.Model):
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
     ingredient = db.Column(db.String(64))
     weight_lbs = db.Column(db.Float)
-    percent_of_total = db.Column(db.Float)
 
     def __repr__(self):
         return '<Fermentable: %r>' % self.ingredient
@@ -154,7 +154,7 @@ class Recipe_Hops(db.Model):
     __tablename__ = 'gb_recipe_hops'
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
-    hop_name = db.Column(db.String(64))
+    hop = db.Column(db.String(64))
     weight_oz = db.Column(db.Float)
     boil_time_min = db.Column(db.Integer)
     alpha_acid_content = db.Column(db.Float)
@@ -162,7 +162,7 @@ class Recipe_Hops(db.Model):
     ibu = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Hop: %r>' % self.name
+        return '<Hop: %r>' % self.hop
 
 class Recipe_Mash(db.Model):
     __tablename__ = 'gb_recipe_mash'
@@ -177,7 +177,7 @@ class Recipe_Mash(db.Model):
     mash_out_vol = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Mash for recipe: %r>' % self.recipe
+        return '<Mash for recipe_id: %r>' % self.recipe_id
 
 class Recipe_Yeast(db.Model):
     __tablename__ = 'gb_recipe_yeast'
@@ -193,7 +193,7 @@ class Recipe_Yeast(db.Model):
     liters_for_starter = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Yeast: %r>' % self.yeast
+        return '<Yeast: %r>' % self.yeast_name
 
 class Recipe_Water(db.Model):
     __tablename__ = 'gb_recipe_water'
@@ -202,7 +202,7 @@ class Recipe_Water(db.Model):
     grain_abs_factor = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Water for recipe: %r>' % self.recipe
+        return '<Water for recipe_id: %r>' % self.recipe_id
 
 class Recipe_Fermentation(db.Model):
     __tablename__ = 'gb_recipe_fermentation'
@@ -221,7 +221,7 @@ class Recipe_Fermentation(db.Model):
 
 
     def __repr__(self):
-        return '<Fermentation for recipe: %r>' % self.recipe
+        return '<Fermentation for recipe_id: %r>' % self.recipe_id
 
 
 class Recipe_Chemistry(db.Model):
@@ -245,7 +245,7 @@ class Recipe_Chemistry(db.Model):
     ph_up_chalk_CaCO3 = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Chemistry for recipe: %r>' % self.recipe
+        return '<Chemistry for recipe_id: %r>' % self.recipe_id
 
 
 

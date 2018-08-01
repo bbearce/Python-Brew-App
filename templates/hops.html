@@ -1,0 +1,155 @@
+<div class='container'>
+  <div class='input-div'>
+    
+    <h3>Hops</h3>
+
+      {% for column_set in hops_columns %}
+        <div style='display: block;'>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[0][0]|capitalize }}{{ column_set[0][1] }}</label>
+            <select name='{{ column_set[0][0] }}{{ column_set[0][1] }}'>      
+                {% for ingredient in Hops %}
+                    <option> {{ ingredient.hops }}</option>  
+                {% endfor %}
+            </select>
+          </div>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[1][0]|capitalize }}{{ column_set[1][1] }}</label>
+            <input type=text size=10 name={{ column_set[1][0] }}{{ column_set[1][1] }} value=1>
+          </div>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[2][0]|capitalize }}{{ column_set[2][1] }}</label>
+            <input type=text size=10 name={{ column_set[2][0] }}{{ column_set[2][1] }} value=1>
+          </div>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[3][0]|capitalize }}{{ column_set[3][1] }}</label>
+            <input type=text size=10 name={{ column_set[3][0] }}{{ column_set[3][1] }} value=1>
+          </div>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[4][0]|capitalize }}{{ column_set[4][1] }}</label>
+            <input type=text size=10 name={{ column_set[4][0] }}{{ column_set[4][1] }} value=1>
+          </div>
+
+          <div style='display: block;'>
+            <label style='display: block;'>{{ column_set[5][0]|capitalize }}{{ column_set[5][1] }}</label>
+            <input type=text size=10 name={{ column_set[5][0] }}{{ column_set[5][1] }} value=1>
+          </div>
+
+
+        </div>
+
+      {%  endfor %}
+
+      <!--
+      <div style='display: block;'>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Hop1</label>
+          <input type=text size=10 name=hop1 value='some hop1'>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Weight Oz</label>
+          <input type=text size=10 name=weight_oz1 value=1>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Boil Time Min</label>
+          <input type=text size=10 name=boil_time_min1 value=60>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Alpha Acid Content</label>
+          <input type=text size=10 name=alpha_acid_content1 value=4>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Utilization</label>
+          <input type=text size=10 name=utilization1 value=30>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>IBU</label>
+          <input type=text size=10 name=ibu1 value=25>
+        </div>
+
+      </div>
+
+      <div style='display: block;'>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Hop2</label>
+          <input type=text size=10 name=hop2 value='some hop2'>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Weight Oz</label>
+          <input type=text size=10 name=weight_oz2 value=1>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Boil Time Min</label>
+          <input type=text size=10 name=boil_time_min2 value=60>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Alpha Acid Content</label>
+          <input type=text size=10 name=alpha_acid_content2 value=4>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Utilization</label>
+          <input type=text size=10 name=utilization2 value=30>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>IBU</label>
+          <input type=text size=10 name=ibu2 value=25>
+        </div>
+
+      </div>
+
+      <div style='display: block;'>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Hop3</label>
+          <input type=text size=10 name=hop3 value='some hop3'>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Weight Oz</label>
+          <input type=text size=10 name=weight_oz3 value=1>
+        </div>
+        
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Boil Time Min</label>
+          <input type=text size=10 name=boil_time_min3 value=60>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Alpha Acid Content</label>
+          <input type=text size=10 name=alpha_acid_content3 value=4>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>Utilization</label>
+          <input type=text size=10 name=utilization3 value=30>
+        </div>
+
+        <div style='display: inline-block;'>
+          <label style='display: block;'>IBU</label>
+          <input type=text size=10 name=ibu3 value=25>
+        </div>
+
+      </div>
+    -->
+
+  </div>
+
+  <div class='app-div'>stuff</div>
+</div>

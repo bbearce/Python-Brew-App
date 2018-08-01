@@ -1,0 +1,35 @@
+.container{
+    display: block;
+    height: 300px;
+    width: 100%;
+}
+
+/*h3{
+    display: block;
+}*/
+
+.input-div{
+    border-style: solid; 
+    float: left;
+    color: blue;
+    height: 900px;
+    width: 33%;
+}
+
+.app-div{
+    border-style: solid; 
+    float: right;
+    color: red;
+    width: 65%;
+    height: 900px;
+}
+
+/* Fermentables */
+
+.grain_percents{
+    float: left;
+}
+
+.chartDiv{
+    float: right;
+}

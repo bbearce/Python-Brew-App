@@ -42,7 +42,10 @@ INSERT INTO gb_recipe_master;
 INSERT INTO gb_site_users;
 INSERT INTO gb_site_role;
 
+-- Display columns and table info
 
+\dt gb_recipe_fermentables --this one is more compact
+\dt+ gb_recipe_fermentables
 
 
 
