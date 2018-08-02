@@ -379,6 +379,11 @@ def index():
                            fermentation_columns=fermentation_columns,
                            chemistry_columns=chemistry_columns)
 
+@app.route('/test')
+def test():
+    return jsonify(stuff={"one":1})
+
+
 if __name__ == "__main__":
     manager.run()
     # app.run(debug=True)

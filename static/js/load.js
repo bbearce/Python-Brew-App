@@ -1,3 +1,4 @@
+console.log('hello world')
 $(function() {
 $('#load').bind('click', function() {
 
@@ -7,8 +8,10 @@ $('#load').bind('click', function() {
 
   // the load() function returns a json object with key value pairs
   }, function(data) {
-
-    if (data['recipe'] == "that recipe exists already") {
+    x = data
+    /*
+    if (data['recipe'] == "that recipe exists already"){
+    
     // If this recipe doesn't exist in the database then tell the user.
 
     $('#messages').text("That recipe doesn't exist")
@@ -127,14 +130,15 @@ $('#load').bind('click', function() {
 
 
     // Rerun app calculations
-    calc_percent_of_total();
-    make_chart();
+    //calc_percent_of_total();
+    //make_chart();
     // App Area
     $('#app').text(data['recipe'])
-
+    
+    
     }
 
-
+    */
     
 
   });
