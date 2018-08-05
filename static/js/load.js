@@ -1,4 +1,3 @@
-console.log('hello world')
 $(function() {
 $('#load').bind('click', function() {
 
@@ -8,9 +7,9 @@ $('#load').bind('click', function() {
 
   // the load() function returns a json object with key value pairs
   }, function(data) {
-    x = data
-    /*
-    if (data['recipe'] == "that recipe exists already"){
+    loaded_data = data
+
+    if (data['recipe'] == "that recipe doesn't exist"){
     
     // If this recipe doesn't exist in the database then tell the user.
 
@@ -19,126 +18,122 @@ $('#load').bind('click', function() {
     } else {
     // If this recipe exists in the database then tell the user and load it.
 
-    $('#messages').text("You have loaded recipe "+data['recipe'])
+    $('#messages').text("You have loaded recipe "+loaded_data['data']['Recipe']['gb_recipe_master']['recipe'])
 
     // Recipe
-    $('select[name="style"]').val(data['style'])
+    $('select[name="style"]').val(loaded_data['data']['Recipe']['gb_recipe_master']['style'])
 
     // System
-    $('input[name="boil_time"]').val(data['boil_time'])
-    $('input[name="evap_rate"]').val(data['evap_rate'])
-    $('input[name="shrinkage"]').val(data['shrinkage'])
-    $('input[name="efficiency"]').val(data['efficiency'])
-    $('input[name="boil_kettle_dead_space"]').val(data['boil_kettle_dead_space'])
-    $('input[name="lauter_tun_dead_space"]').val(data['lauter_tun_dead_space'])
-    $('input[name="mash_tun_dead_space"]').val(data['mash_tun_dead_space'])
-    $('input[name="fermentation_tank_loss"]').val(data['fermentation_tank_loss'])
+    $('input[name="boil_time"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['boil_time'])
+    $('input[name="evap_rate"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['evap_rate'])
+    $('input[name="shrinkage"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['shrinkage'])
+    $('input[name="efficiency"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['efficiency'])
+    $('input[name="boil_kettle_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['boil_kettle_dead_space'])
+    $('input[name="lauter_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['lauter_tun_dead_space'])
+    $('input[name="mash_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['mash_tun_dead_space'])
+    $('input[name="fermentation_tank_loss"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['fermentation_tank_loss'])
 
     // Fermentables
-    $('select[name="ingredient1"]').val(data['ingredient1'])
-    $('input[name="weight_lbs1"]').val(data['weight_lbs1'])
-    $('input[name="percent_of_total1"]').val(data['percent_of_total1'])
-
-    $('select[name="ingredient2"]').val(data['ingredient2'])
-    $('input[name="weight_lbs2"]').val(data['weight_lbs2'])
-    $('input[name="percent_of_total2"]').val(data['percent_of_total2'])
-
-    $('select[name="ingredient3"]').val(data['ingredient3'])
-    $('input[name="weight_lbs3"]').val(data['weight_lbs3'])
-    $('input[name="percent_of_total3"]').val(data['percent_of_total3'])
-
-    $('select[name="ingredient4"]').val(data['ingredient4'])
-    $('input[name="weight_lbs4"]').val(data['weight_lbs4'])
-    $('input[name="percent_of_total4"]').val(data['percent_of_total4'])
-
-    $('select[name="ingredient5"]').val(data['ingredient5'])
-    $('input[name="weight_lbs5"]').val(data['weight_lbs5'])
-    $('input[name="percent_of_total5"]').val(data['percent_of_total5'])
+    $('select[name="ingredient1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][0]['ingredient'])
+    $('input[name="weight_lbs1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][0]['weight_lbs'])
+    
+    $('select[name="ingredient2"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][1]['ingredient'])
+    $('input[name="weight_lbs2"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][1]['weight_lbs'])
+    
+    $('select[name="ingredient3"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][2]['ingredient'])
+    $('input[name="weight_lbs3"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][2]['weight_lbs'])
+    
+    $('select[name="ingredient4"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][3]['ingredient'])
+    $('input[name="weight_lbs4"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][3]['weight_lbs'])
+    
+    $('select[name="ingredient5"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][4]['ingredient'])
+    $('input[name="weight_lbs5"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][4]['weight_lbs'])
+    
 
     // Hops
-    $('select[name="hop1"]').val(data['hop1'])
-    $('input[name="weight_oz1"]').val(data['weight_oz1'])
-    $('input[name="boil_time_min1"]').val(data['boil_time_min1'])
-    $('input[name="alpha_acid_content1"]').val(data['alpha_acid_content1'])
-    $('input[name="utilization1"]').val(data['utilization1'])
-    $('input[name="ibu1"]').val(data['ibu1'])
+    $('select[name="hop1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['hop'])
+    $('input[name="weight_oz1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['weight_oz'])
+    $('input[name="boil_time_min1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['boil_time_min'])
+    $('input[name="alpha_acid_content1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['alpha_acid_content'])
+    $('input[name="utilization1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['utilization'])
+    $('input[name="ibu1"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][0]['ibu'])
 
-    $('select[name="hop2"]').val(data['hop2'])
-    $('input[name="weight_oz2"]').val(data['weight_oz2'])
-    $('input[name="boil_time_min2"]').val(data['boil_time_min2'])
-    $('input[name="alpha_acid_content2"]').val(data['alpha_acid_content2'])
-    $('input[name="utilization2"]').val(data['utilization2'])
-    $('input[name="ibu2"]').val(data['ibu2'])
+    $('select[name="hop2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['hop'])
+    $('input[name="weight_oz2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['weight_oz'])
+    $('input[name="boil_time_min2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['boil_time_min'])
+    $('input[name="alpha_acid_content2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['alpha_acid_content'])
+    $('input[name="utilization2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['utilization'])
+    $('input[name="ibu2"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][1]['ibu'])
 
-    $('select[name="hop3"]').val(data['hop3'])
-    $('input[name="weight_oz3"]').val(data['weight_oz3'])
-    $('input[name="boil_time_min3"]').val(data['boil_time_min3'])
-    $('input[name="alpha_acid_content3"]').val(data['alpha_acid_content3'])
-    $('input[name="utilization3"]').val(data['utilization3'])
-    $('input[name="ibu3"]').val(data['ibu3'])
+    $('select[name="hop3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['hop'])
+    $('input[name="weight_oz3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['weight_oz'])
+    $('input[name="boil_time_min3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['boil_time_min'])
+    $('input[name="alpha_acid_content3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['alpha_acid_content'])
+    $('input[name="utilization3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['utilization'])
+    $('input[name="ibu3"]').val(loaded_data['data']['Recipe']['gb_recipe_hops'][2]['ibu'])
 
     // Mash
-    $('input[name="init_grain_temp"]').val(data['init_grain_temp'])
-    $('input[name="infusion_temp"]').val(data['infusion_temp'])
-    $('input[name="sacc_rest_temp"]').val(data['sacc_rest_temp'])
-    $('input[name="mash_duration"]').val(data['mash_duration'])
-    $('input[name="mash_volume"]').val(data['mash_volume'])
-    $('input[name="mash_thickness"]').val(data['mash_thickness'])
-    $('input[name="mash_out_vol"]').val(data['mash_out_vol'])
+    $('input[name="init_grain_temp"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['init_grain_temp'])
+    $('input[name="infusion_temp"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['infusion_temp'])
+    $('input[name="sacc_rest_temp"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['sacc_rest_temp'])
+    $('input[name="mash_duration"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['mash_duration'])
+    $('input[name="mash_volume"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['mash_volume'])
+    $('input[name="mash_thickness"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['mash_thickness'])
+    $('input[name="mash_out_vol"]').val(loaded_data['data']['Recipe']['gb_recipe_mash']['mash_out_vol'])
 
     // Yeast
-    $('select[name="yeast_name"]').val(data['yeast_name'])
-    $('input[name="attenuation"]').val(data['attenuation'])
-    $('input[name="abv"]').val(data['abv'])
-    $('input[name="og"]').val(data['og'])
-    $('input[name="fg"]').val(data['fg'])
-    $('input[name="init_cells"]').val(data['init_cells'])
-    $('input[name="pitched_cells"]').val(data['pitched_cells'])
-    $('input[name="liters_for_starter"]').val(data['liters_for_starter'])
+    $('select[name="yeast_name"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['yeast_name'])
+    $('input[name="attenuation"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['attenuation'])
+    $('input[name="abv"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['abv'])
+    $('input[name="og"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['og'])
+    $('input[name="fg"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['fg'])
+    $('input[name="init_cells"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['init_cells'])
+    $('input[name="pitched_cells"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['pitched_cells'])
+    $('input[name="liters_for_starter"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['liters_for_starter'])
 
     // Water
-    $('input[name="grain_abs_factor"]').val(data['grain_abs_factor'])
+    $('input[name="grain_abs_factor"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['grain_abs_factor'])
 
     // Fermentation
-    $('input[name="days1"]').val(data['days1'])
-    $('input[name="temp1"]').val(data['temp1'])
-    $('input[name="days2"]').val(data['days2'])
-    $('input[name="temp2"]').val(data['temp2'])
-    $('input[name="days3"]').val(data['days3'])
-    $('input[name="temp3"]').val(data['temp3'])
-    $('input[name="days4"]').val(data['days4'])
-    $('input[name="temp4"]').val(data['temp4'])
-    $('input[name="days5"]').val(data['days5'])
-    $('input[name="temp5"]').val(data['temp5'])
+    $('input[name="days1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days1'])
+    $('input[name="temp1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp1'])
+    $('input[name="days2"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days2'])
+    $('input[name="temp2"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp2'])
+    $('input[name="days3"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days3'])
+    $('input[name="temp3"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp3'])
+    $('input[name="days4"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days4'])
+    $('input[name="temp4"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp4'])
+    $('input[name="days5"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days5'])
+    $('input[name="temp5"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp5'])
 
     // Chemistry
-    $('input[name="init_Ca"]').val(data['init_Ca'])
-    $('input[name="init_Mg"]').val(data['init_Mg'])
-    $('input[name="init_Na"]').val(data['init_Na'])
-    $('input[name="init_Cl"]').val(data['init_Cl'])
-    $('input[name="init_SO4"]').val(data['init_SO4'])
-    $('input[name="init_HCO3_CaCO3"]').val(data['init_HCO3_CaCO3'])
-    $('input[name="actual_ph"]').val(data['actual_ph'])
-    $('input[name="effective_alkalinity"]').val(data['effective_alkalinity'])
-    $('input[name="residual_alkalinity"]').val(data['residual_alkalinity'])
-    $('input[name="ph_down_gypsum_CaSO4"]').val(data['ph_down_gypsum_CaSO4'])
-    $('input[name="ph_down_cal_chl_CaCl2"]').val(data['ph_down_cal_chl_CaCl2'])
-    $('input[name="ph_down_epsom_salt_MgSO4"]').val(data['ph_down_epsom_salt_MgSO4'])
-    $('input[name="ph_up_slaked_lime_CaOH2"]').val(data['ph_up_slaked_lime_CaOH2'])
-    $('input[name="ph_up_baking_soda_NaHCO3"]').val(data['ph_up_baking_soda_NaHCO3'])
-    $('input[name="ph_up_chalk_CaCO3"]').val(data['ph_up_chalk_CaCO3'])
+    $('input[name="init_Ca"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_Ca'])
+    $('input[name="init_Mg"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_Mg'])
+    $('input[name="init_Na"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_Na'])
+    $('input[name="init_Cl"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_Cl'])
+    $('input[name="init_SO4"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_SO4'])
+    $('input[name="init_HCO3_CaCO3"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['init_HCO3_CaCO3'])
+    $('input[name="actual_ph"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['actual_ph'])
+    $('input[name="effective_alkalinity"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['effective_alkalinity'])
+    $('input[name="residual_alkalinity"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['residual_alkalinity'])
+    $('input[name="ph_down_gypsum_CaSO4"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_down_gypsum_CaSO4'])
+    $('input[name="ph_down_cal_chl_CaCl2"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_down_cal_chl_CaCl2'])
+    $('input[name="ph_down_epsom_salt_MgSO4"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_down_epsom_salt_MgSO4'])
+    $('input[name="ph_up_slaked_lime_CaOH2"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_up_slaked_lime_CaOH2'])
+    $('input[name="ph_up_baking_soda_NaHCO3"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_up_baking_soda_NaHCO3'])
+    $('input[name="ph_up_chalk_CaCO3"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_up_chalk_CaCO3'])
 
 
     // Rerun app calculations
     //calc_percent_of_total();
     //make_chart();
     // App Area
-    $('#app').text(data['recipe'])
+    $('#app').text(loaded_data['data']['Recipe']['gb_recipe_master']['recipe'])
     
     
     }
 
-    */
+
     
 
   });

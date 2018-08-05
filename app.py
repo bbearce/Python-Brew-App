@@ -193,7 +193,7 @@ def load():
     except AttributeError as error:
         print("this recipe doesn't exist so we can't load it.")
 
-        recipe = "that recipe exists already"
+        recipe = "that recipe doesn't exist"
 
         return jsonify(recipe=recipe)
 
@@ -337,7 +337,6 @@ def delete():
 
     except IndexError as error:
         recipe = "that recipe does not exist"
-        print("this is where we do something else.")
 
         
     return jsonify(recipe=recipe)
