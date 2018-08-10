@@ -11,6 +11,7 @@
 <body>
 
 
+
 <p id=messages></p>
 
 <h1>Brewculator</h1>
@@ -19,7 +20,22 @@
 (figure this out later; notes said to do it)
 -->
 <script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+
+    Data = JSON.parse({{ Data|tojson }})var needle = 'Rye Malt (Briess)';
+
+    // iterate over each element in the array
+    /*
+    for (var i = 0; i < Data['Constants']['gb_constants_fermentables'].length; i++){
+      // look for the entry with a matching `code` value
+      if (Data['Constants']['gb_constants_fermentables'][i].ingredients == needle){
+         console.log(i)
+        // obj[i].name is the matched result
+      }
+    }*/
+
+
+
 </script>
 
 
@@ -68,9 +84,9 @@
 <label style='display: block;'>App Area</label>
 <span id=app style='border-style: solid;'>initial state</span>
 
-<!-- App Scripts 
+<!-- App Scripts -->
 <script src="../static/js/fermentables.js"></script>
--->
+
 <!-- Load Script -->
 <script src="../static/js/load.js"></script>
 <!--<script src="../static/js/test_json.js"></script> -->

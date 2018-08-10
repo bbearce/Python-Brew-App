@@ -11,7 +11,7 @@
           <label style='display: block;'>{{ column_set[0][0]|capitalize }}{{ column_set[0][1] }}</label>
 
           <!-- Testing inputs -->
-          <select name='{{ column_set[0][0] }}{{ column_set[0][1] }}'>      
+          <select  name='{{ column_set[0][0] }}{{ column_set[0][1] }}'>      
               {% for ingredient in Fermentables %}
                   <option> {{ ingredient.ingredients }}</option>  
               {% endfor %}
@@ -49,6 +49,14 @@
   <div class='app-div'>
     <h3>Fermentables Summary</h3>
 
+    <h3>OG: <span id=OG>1.000</span></h3>
+
+    <!-- Chart Code -->
+
+    <div class=chartDiv  style='width: 70%;'>
+    <canvas id="myChart"></canvas>
+    </div>
+
     <div class='grain_percents'>
     <h3>Percent Break Down</h3>
     {% for column_set in fermentables_columns %}
@@ -56,11 +64,6 @@
     <p id='p_of_total_{{ column_set[0][1] }}'>0</p>
 
     {% endfor %}
-    </div>
-    <!-- Chart Code -->
-
-    <div class=chartDiv  style='width: 70%;'>
-    <canvas id="myChart"></canvas>
     </div>
 
   </div>

@@ -1,6 +1,6 @@
 from flask import Flask, flash, jsonify, render_template, request, redirect, url_for
 from flask_script import Manager
-import psycopg2, pdb
+import psycopg2, pdb, json
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -348,11 +348,66 @@ def delete():
 @app.route('/')
 def index():
 
+
     # Get fermentables (not recipe values but constants)
     Styles = models.Styles.query.all()
     Fermentables = models.Fermentables.query.all()
     Hops = models.Hops.query.all()
     Yeast = models.Yeast.query.all()
+    gcc = models.gravity_correction_chart.query.all()
+
+
+    ### Constants Data ###
+
+    fermentables_list = []
+    for F in Fermentables:
+        fermentables_dict = {}
+        for f in [i for i in F.__table__.columns._data]:
+            fermentables_dict[f] = getattr(F, f)
+        fermentables_list.append(fermentables_dict)
+
+    hops_list = []
+    for H in Hops:
+        hops_dict = {}
+        for h in [i for i in H.__table__.columns._data]:
+            hops_dict[h] = getattr(H, h)
+        hops_list.append(hops_dict)
+
+    yeast_list = []
+    for Y in Yeast:
+        yeast_dict = {}
+        for y in [i for i in Y.__table__.columns._data]:
+            yeast_dict[y] = getattr(Y, y)
+        yeast_list.append(yeast_dict)
+
+    style_list = []
+    for S in Styles:
+        style_dict = {}
+        for s in [i for i in S.__table__.columns._data]:
+            style_dict[s] = getattr(S, s)
+        style_list.append(style_dict)
+
+    gcc_list = []
+    for G in models.gravity_correction_chart.query.all():
+        gcc_dict = {}
+        for g in G.__table__.columns._data:
+            gcc_dict[g] = getattr(G, g)
+        gcc_list.append(gcc_dict)
+
+    data = {}
+    data['Constants'] = {}
+
+    data['Constants']['gb_constants_fermentables'] = fermentables_list
+    data['Constants']['gb_constants_hops'] = hops_list
+    data['Constants']['gb_constants_yeast'] = yeast_dict
+    data['Constants']['gb_constants_style'] = style_dict
+    data['Constants']['gb_constants_gcc'] = gcc_list
+
+
+
+
+
+
 
     # Dynamic Control for Fermentables Inputs
     num_of_inputs = 5
@@ -365,6 +420,7 @@ def index():
 
 
     return render_template('index.html',
+                           Data = json.dumps(data),
                            Styles = Styles,
                            Fermentables = Fermentables,
                            Hops = Hops,

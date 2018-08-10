@@ -24,7 +24,33 @@
     height: 900px;
 }
 
+
+/* Select Styles */
+
+select {
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;       /* remove default arrow */
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;   /* add custom arrow */
+    height: 34px;
+    width: 175px;
+}
+
+/*
+select {
+    appearance: none;
+    background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+    height: 34px;
+    width: 240px;
+}*/
+
+
+
 /* Fermentables */
+
+.fermentables_weight {
+    width: 100%;
+}
 
 .grain_percents{
     float: left;

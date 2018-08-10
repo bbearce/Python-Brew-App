@@ -49,7 +49,7 @@ class Hops(db.Model):
     alphaHigh = db.Column(db.Float)
     flavorProfile = db.Column(db.Text)
     possibleSubstitutions = db.Column(db.Text)
-    orgin = db.Column(db.String(64))
+    origin = db.Column(db.String(64))
     storage = db.Column(db.String(64))
     additionalInformation_History = db.Column(db.Text)
 
@@ -200,6 +200,8 @@ class Recipe_Water(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
     grain_abs_factor = db.Column(db.Float)
+    gal = db.Column(db.Float)
+
 
     def __repr__(self):
         return '<Water for recipe_id: %r>' % self.recipe_id
