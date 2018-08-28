@@ -47,6 +47,15 @@ class Hops(db.Model):
     value = db.Column(db.Float)
     alphaLow = db.Column(db.Float)
     alphaHigh = db.Column(db.Float)
+    alphaAcid = db.Column(db.Float)
+    berry = db.Column(db.Float)
+    citrus = db.Column(db.Float)
+    tart = db.Column(db.Float)
+    flowery = db.Column(db.Float)
+    earthy = db.Column(db.Float)
+    pine = db.Column(db.Float)
+    spicy = db.Column(db.Float)
+    bitter = db.Column(db.Float)
     flavorProfile = db.Column(db.Text)
     possibleSubstitutions = db.Column(db.Text)
     origin = db.Column(db.String(64))
@@ -90,6 +99,13 @@ class Styles(db.Model):
 
     def __repr__(self):
         return '<Role %r>' % self.styles
+
+class utilization_table(db.Model):
+    __tablename__ = 'gb_constants_utilization_table'
+    id = db.Column(db.Integer, primary_key=True)
+    boil_time = db.Column(db.Integer)
+    whole_hop = db.Column(db.Float)
+    pellet_hop = db.Column(db.Float)
 
 class gravity_correction_chart(db.Model):
     __tablename__ = 'gb_constants_gravity_correction_chart'
@@ -157,9 +173,7 @@ class Recipe_Hops(db.Model):
     hop = db.Column(db.String(64))
     weight_oz = db.Column(db.Float)
     boil_time_min = db.Column(db.Integer)
-    alpha_acid_content = db.Column(db.Float)
-    utilization = db.Column(db.Float)
-    ibu = db.Column(db.Float)
+    
 
     def __repr__(self):
         return '<Hop: %r>' % self.hop
@@ -169,12 +183,9 @@ class Recipe_Mash(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
     init_grain_temp = db.Column(db.Float)
-    infusion_temp = db.Column(db.Float)
     sacc_rest_temp = db.Column(db.Float)
     mash_duration = db.Column(db.Integer)
-    mash_volume = db.Column(db.Float)
     mash_thickness = db.Column(db.Float)
-    mash_out_vol = db.Column(db.Float)
 
     def __repr__(self):
         return '<Mash for recipe_id: %r>' % self.recipe_id
@@ -184,13 +195,7 @@ class Recipe_Yeast(db.Model):
     id = db.Column(db.Integer, primary_key=True)    
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
     yeast_name = db.Column(db.String(64))
-    attenuation = db.Column(db.Float)
-    abv = db.Column(db.Float)
-    og = db.Column(db.Float)
-    fg = db.Column(db.Float)
     init_cells = db.Column(db.Float)
-    pitched_cells = db.Column(db.Float)
-    liters_for_starter = db.Column(db.Float)
 
     def __repr__(self):
         return '<Yeast: %r>' % self.yeast_name

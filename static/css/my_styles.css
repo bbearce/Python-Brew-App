@@ -7,23 +7,87 @@
 /*h3{
     display: block;
 }*/
-
+/* input divs */
 .input-div{
     border-style: solid; 
     float: left;
     color: blue;
-    height: 900px;
+    height: 600px;
     width: 33%;
 }
 
+.fermentables-input-div{
+    border-style: solid; 
+    float: left;
+    color: blue;
+    height: 500px;
+    width: 33%;
+}
+
+.hops-input-div{
+    border-style: solid; 
+    float: left;
+    color: blue;
+    height: 600px;
+    width: 33%;
+}
+
+.mash-input-div{
+    border-style: solid; 
+    float: left;
+    color: blue;
+    height: 300px;
+    width: 33%;
+}
+
+.yeast-input-div{
+    border-style: solid; 
+    float: left;
+    color: blue;
+    height: 300px;
+    width: 33%;
+}
+
+/* app divs */
 .app-div{
     border-style: solid; 
     float: right;
     color: red;
     width: 65%;
-    height: 900px;
+    height: 600px;
 }
 
+.fermentables-app-div{
+    border-style: solid; 
+    float: right;
+    color: red;
+    width: 65%;
+    height: 500px;
+}
+
+.hops-app-div{
+    border-style: solid; 
+    float: right;
+    color: red;
+    width: 65%;
+    height: 600px;
+}
+
+.mash-app-div{
+    border-style: solid; 
+    float: right;
+    color: red;
+    width: 65%;
+    height: 300px;
+}
+
+.yeast-app-div{
+    border-style: solid; 
+    float: right;
+    color: red;
+    width: 65%;
+    height: 300px;
+}
 
 /* Select Styles */
 
@@ -53,9 +117,9 @@ select {
 }
 
 .grain_percents{
-    float: left;
+
 }
 
 .chartDiv{
-    float: right;
+    display: block;
 }

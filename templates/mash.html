@@ -1,54 +1,38 @@
 <div class='container'>
-  <div class='input-div'>
+  <div class='mash-input-div'>
     
     <h3>Mash</h3>
 
+    {% for column in mash_columns %}
     <div style='display: block;'>
+        <label style='display: block;'>{{ column }}</label>
 
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Init Grain Temp</label>
-          <input type=text size=10 name=init_grain_temp value=70>
-        </div>
+        {% if column == 'init_grain_temp' %}
+        <input type=text class=mash_input size=10 name={{ column }} value=70>
+        {% elif column == 'sacc_rest_temp' %}
+        <input type=text class=mash_input size=10 name={{ column }} value=150>
+        {% elif column == 'mash_duration' %}      
+        <input type=text class=mash_input size=10 name={{ column }} value=60>
+        {% else %}
+        <input type=text class=mash_input size=10 name={{ column }} value=1.25>
+
+        {% endif %}
+
         
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Infusion Temp</label>
-          <input type=text size=10 name=infusion_temp value=1>
-        </div>
-        
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Sacc Rest Temp</label>
-          <input type=text size=10 name=sacc_rest_temp value=60>
-        </div>
+    </div>  
 
-    </div>
+    {% endfor %}    
 
-    <div style='display: block;'>
-
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Mash Duration</label>
-          <input type=text size=10 name=mash_duration value=4>
-        </div>
-
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Mash Volume</label>
-          <input type=text size=10 name=mash_volume value=30>
-        </div>
-
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Mash Thickness</label>
-          <input type=text size=10 name=mash_thickness value=25>
-        </div>
-
-        <div style='display: inline-block;'>
-          <label style='display: block;'>Mash Out Vol</label>
-          <input type=text size=10 name=mash_out_vol value=25>
-        </div>
-
-    </div>
 
   </div>
 
-  <div class='app-div'>stuff</div>
+
+  <div class='mash-app-div'>
+    <h3>Mash Summary</h3>
+    <h3>Mash Volume: <span id=mash_volume>0.000</span></h3>
+    <h3>Infusion Temperature: <span id=infusion_temp>0.000</span></h3>
+    <h3>Mash Out Volume: <span id=mash_out_vol>0.000</span></h3>
+  </div>
   
 </div>
 

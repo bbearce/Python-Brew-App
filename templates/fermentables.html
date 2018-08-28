@@ -1,6 +1,6 @@
 
 <div class='container'>
-  <div class='input-div'>
+  <div class='fermentables-input-div'>
     
     <h3>Fermentables</h3>
 
@@ -46,25 +46,27 @@
 
   </div>
 
-  <div class='app-div'>
+  <div class='fermentables-app-div'>
     <h3>Fermentables Summary</h3>
 
     <h3>OG: <span id=OG>1.000</span></h3>
 
     <!-- Chart Code -->
 
-    <div class=chartDiv  style='width: 70%;'>
-    <canvas id="myChart"></canvas>
+    <div class=fermentablesChartDiv  style='width: 90%;'>
+    <canvas id="fermentablesChart"></canvas>
     </div>
 
+    <!--
     <div class='grain_percents'>
     <h3>Percent Break Down</h3>
     {% for column_set in fermentables_columns %}
-
-    <p id='p_of_total_{{ column_set[0][1] }}'>0</p>
+        <p id='ingredient_{{ column_set[0][1] }}'>0 - None</p>
+        <p id='p_of_total_{{ column_set[0][1] }}'>0</p>
 
     {% endfor %}
     </div>
+    -->
 
   </div>
 

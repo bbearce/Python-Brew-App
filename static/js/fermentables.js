@@ -16,28 +16,46 @@ function calc_percent_of_total() {
         percent_of_totals.push(100*weights[i]/total)
     }
 
-    // Update percent of totals
-    for (i = 1; i < 6; i++) { 
-        document.getElementById('p_of_total_'+String(i)).innerHTML = String(percent_of_totals[i-1]+" %")
-    }
-
     return total;
 
 }
 
 function calc_og() {
 
+    // Go get the drop down indgredients 
+    ingredients = []
+    for (var i = 0; i < 5; i++) {
+        ingredients.push($('select[name="ingredient'+(i+1).toString()+'"]').val())
+    }
+
+    fermentables_properties = []
+    for (i in ingredients) {
+
+        var ingredient = ingredients[i]
+
+        // iterate over each element in the array
+        
+        for (var i = 0; i < Data['Constants']['gb_constants_fermentables'].length; i++){
+          // look for the entry with a matching `code` value
+          if (Data['Constants']['gb_constants_fermentables'][i].ingredients == ingredient){
+             fermentables_properties.push(Data['Constants']['gb_constants_fermentables'][i]['ppg'])
+            // obj[i].name is the matched result
+          }
+        }
+    } 
+
+
     total_gravity = 0;
     for (var i = 0; i < 5; i++) {
         lbs = $('input[name="weight_lbs'+(i+1).toString()+'"]').val()
-        ppg = 1000*(loaded_data['data']['Constants']['gb_constants_fermentables'][i]['ppg'] - 1)
+        ppg = 1000*(fermentables_properties[i] - 1)
         system_efficiency = Number($('input[name="efficiency"]').val())
         ing_gravtiy = lbs*ppg*system_efficiency
 
         total_gravity = total_gravity + ing_gravtiy
     }
 
-    return total_gravity/5.5/1000 + 1; //Hook up water another time.
+    return total_gravity/5/1000 + 1; //Hook up water another time.
 }
 
 function make_chart() {
@@ -45,21 +63,21 @@ function make_chart() {
     total = calc_percent_of_total();
 
     // Remove previous chart
-    var elem = document.getElementById("myChart");
+    var elem = document.getElementById("fermentablesChart");
     elem.remove();
     var elem = document.getElementsByClassName("chartjs-size-monitor");
     if(elem.length != 0){
         elem[0].remove();
-    }else{console.log('Doesn\'t exists')}
+    }else{console.log('Note from fermentables: initial fermentable chart')}
     
 
     var canvas = document.createElement('canvas');
-    canvas.id = 'myChart'
-    var div = document.getElementsByClassName("chartDiv")
+    canvas.id = 'fermentablesChart'
+    var div = document.getElementsByClassName("fermentablesChartDiv")
     div[0].appendChild(canvas)
 
     // Chart Code
-    var ctx = document.getElementById('myChart').getContext('2d');
+    var ctx = document.getElementById('fermentablesChart').getContext('2d');
     var chart = new Chart(ctx, {
         // The type of chart we want to create
         type: 'bar',
@@ -108,6 +126,11 @@ function make_chart() {
 
 }
 
+function refresh_fermentables(){
+ 
+    $('#OG').text(calc_og().toFixed(3)); //toFixed() is a rounding method
+    make_chart();
+}
 
 
 // Display Chart right off the bat
@@ -115,23 +138,17 @@ calc_percent_of_total();
 make_chart()        
 
 weightsArray = document.getElementsByClassName('fermentables_weight')
-
-
 //Watch weights to trigger change (PS: we are watching grain name too for labels in graph)
 for (var i=0, max=weightsArray.length; i < max; i++) {
     // Do something with the element here
     fermentables = document.getElementsByName('ingredient'+String(i+1))
     fermentables[0].addEventListener("input", function() {
-        
-        $('input[name="boil_time"]').val(calc_og();
-        make_chart();
+    refresh_fermentables()
 
     });
 
     weightsArray[i].addEventListener("input", function() {
-        
-        //calc_percent_of_total();
-        make_chart()
+    refresh_fermentables()
 
     });
 }

@@ -13,7 +13,7 @@ manager = Manager(app)
 # Grab DB table column names
 import models
 
-# Make convenient columns variables
+# Make convenient columns variables for recipe
 
 recipe_columns = [column.key for column in models.Recipe.__table__.columns][1:]
 for recipe_table in ['system','mash','fermentables','hops','yeast','water','fermentation','chemistry']:
@@ -355,6 +355,7 @@ def index():
     Hops = models.Hops.query.all()
     Yeast = models.Yeast.query.all()
     gcc = models.gravity_correction_chart.query.all()
+    ut = models.utilization_table.query.all()
 
 
     ### Constants Data ###
@@ -394,18 +395,22 @@ def index():
             gcc_dict[g] = getattr(G, g)
         gcc_list.append(gcc_dict)
 
+    ut_list = []
+    for U in models.utilization_table.query.all():
+        ut_dict = {}
+        for u in U.__table__.columns._data:
+            ut_dict[u] = getattr(U, u)
+        ut_list.append(ut_dict)
+
     data = {}
     data['Constants'] = {}
 
     data['Constants']['gb_constants_fermentables'] = fermentables_list
     data['Constants']['gb_constants_hops'] = hops_list
-    data['Constants']['gb_constants_yeast'] = yeast_dict
-    data['Constants']['gb_constants_style'] = style_dict
+    data['Constants']['gb_constants_yeast'] = yeast_list
+    data['Constants']['gb_constants_style'] = style_list
     data['Constants']['gb_constants_gcc'] = gcc_list
-
-
-
-
+    data['Constants']['gb_constants_ut'] = ut_list
 
 
 

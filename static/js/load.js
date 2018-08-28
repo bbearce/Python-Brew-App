@@ -124,9 +124,29 @@ $('#load').bind('click', function() {
     $('input[name="ph_up_chalk_CaCO3"]').val(loaded_data['data']['Recipe']['gb_recipe_chemistry']['ph_up_chalk_CaCO3'])
 
 
-    // Rerun app calculations
-    //calc_percent_of_total();
-    //make_chart();
+    //// Rerun app calculations
+
+    // Fermentables
+    $('#OG').text(calc_og().toFixed(3)); //toFixed() is a rounding method
+    make_chart();
+
+    // Hops
+    get_hop_info()
+    $('#total_ibu').text(calc_ibu().toFixed(3)); //toFixed() is a rounding method 
+    make_hops_chart()
+
+    // Yeast
+
+    // Mash
+
+    // Water
+
+    // Chemistry
+
+    // Fermentation
+
+
+
     // App Area
     $('#app').text(loaded_data['data']['Recipe']['gb_recipe_master']['recipe'])
     

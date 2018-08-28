@@ -44,42 +44,24 @@ $('#save').bind('click',
                hop1: $('select[name="hop1"]').val(),
                weight_oz1: $('input[name="weight_oz1"]').val(),
                boil_time_min1: $('input[name="boil_time_min1"]').val(),
-               alpha_acid_content1: $('input[name="alpha_acid_content1"]').val(),
-               utilization1: $('input[name="utilization1"]').val(),
-               ibu1: $('input[name="ibu1"]').val(),
 
                hop2: $('select[name="hop2"]').val(),
                weight_oz2: $('input[name="weight_oz2"]').val(),
                boil_time_min2: $('input[name="boil_time_min2"]').val(),
-               alpha_acid_content2: $('input[name="alpha_acid_content2"]').val(),
-               utilization2: $('input[name="utilization2"]').val(),
-               ibu2: $('input[name="ibu2"]').val(),
 
                hop3: $('select[name="hop3"]').val(),
                weight_oz3: $('input[name="weight_oz3"]').val(),
                boil_time_min3: $('input[name="boil_time_min3"]').val(),
-               alpha_acid_content3: $('input[name="alpha_acid_content3"]').val(),
-               utilization3: $('input[name="utilization3"]').val(),
-               ibu3: $('input[name="ibu3"]').val(),
 
                // Mash Table
                init_grain_temp: $('input[name="init_grain_temp"]').val(),
-               infusion_temp: $('input[name="infusion_temp"]').val(),
                sacc_rest_temp: $('input[name="sacc_rest_temp"]').val(),
                mash_duration: $('input[name="mash_duration"]').val(),
-               mash_volume: $('input[name="mash_volume"]').val(),
                mash_thickness: $('input[name="mash_thickness"]').val(),
-               mash_out_vol: $('input[name="mash_out_vol"]').val(),
                
                // Yeast Table
                yeast_name: $('select[name="yeast_name"]').val(),
-               attenuation: $('input[name="attenuation"]').val(),
-               abv: $('input[name="abv"]').val(),
-               og: $('input[name="og"]').val(),
-               fg: $('input[name="fg"]').val(),
                init_cells: $('input[name="init_cells"]').val(),
-               pitched_cells: $('input[name="pitched_cells"]').val(),
-               liters_for_starter: $('input[name="liters_for_starter"]').val(),
 
                // Water Table
                grain_abs_factor: $('input[name="grain_abs_factor"]').val(),
