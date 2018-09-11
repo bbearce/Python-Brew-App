@@ -55,7 +55,10 @@ function calc_og() {
         total_gravity = total_gravity + ing_gravtiy
     }
 
-    return total_gravity/5/1000 + 1; //Hook up water another time.
+    // From System
+    batch_size = parseFloat($('input[name="batch_size"').val()) //Gal
+
+    return total_gravity/batch_size/1000 + 1; //Hook up water another time.
 }
 
 function make_chart() {
@@ -127,15 +130,13 @@ function make_chart() {
 }
 
 function refresh_fermentables(){
- 
+    calc_percent_of_total();
     $('#OG').text(calc_og().toFixed(3)); //toFixed() is a rounding method
     make_chart();
 }
 
-
 // Display Chart right off the bat
-calc_percent_of_total();
-make_chart()        
+refresh_fermentables()
 
 weightsArray = document.getElementsByClassName('fermentables_weight')
 //Watch weights to trigger change (PS: we are watching grain name too for labels in graph)
@@ -153,5 +154,15 @@ for (var i=0, max=weightsArray.length; i < max; i++) {
     });
 }
 
+// Things to watch from system
+system_array = document.getElementsByClassName('system_input')
+for (var i=0, max=system_array.length; i < max; i++) {
+    // Do something with the element here
+    system_array[i].addEventListener("input", function() {
+    refresh_fermentables()
+
+    });
+
+}
 
 

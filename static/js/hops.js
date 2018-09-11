@@ -46,7 +46,7 @@ function calc_ibu(){
   utilizations= []
   for (var i = 0; i < 3; i++) {
       boil_times.push(parseInt($('input[name="boil_time_min'+(i+1).toString()+'"]').val()))
-      weights.push(parseInt($('input[name="weight_oz'+(i+1).toString()+'"]').val()))
+      weights.push(parseFloat($('input[name="weight_oz'+(i+1).toString()+'"]').val()))
       
       // Go look for that boil time in utilization_table
       for (var j = 0; j < Data['Constants']['gb_constants_ut'].length; j++){
@@ -67,7 +67,7 @@ function calc_ibu(){
 
   // [3] Get batch size
 
-  batch_size = 5 //Gal
+  batch_size = parseFloat($('input[name="batch_size"').val()) //Gal
 
   // [4] Calculate IBUs
   ibus = []
@@ -81,15 +81,6 @@ function calc_ibu(){
   return ibus[0]+ibus[1]+ibus[2]
 
 }
-
-  
-
-
-
-
-
-// Go get the drop down indgredients; this is initialization
-get_hop_info()
 
 function make_hops_chart() {
 
@@ -180,12 +171,9 @@ function refresh_hops() {
 }
 
 // Display Chart right off the bat
-get_hop_info()
-calc_ibu()
-make_hops_chart()
+refresh_hops()
 
-
-// Watch hops for dependencies
+//// Watch hops for dependencies
 
 // Things to watch from hops
 for (var i=0, max=3; i < max; i++) {
@@ -220,6 +208,17 @@ for (var i=0, max=5; i < max; i++) {
 
     });
 
+
+}
+
+// Things to watch from system
+system_array = document.getElementsByClassName('system_input')
+for (var i=0, max=system_array.length; i < max; i++) {
+    // Do something with the element here
+    system_array[i].addEventListener("input", function() {
+    refresh_hops()
+
+    });
 
 }
 
