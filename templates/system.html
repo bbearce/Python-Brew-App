@@ -2,48 +2,21 @@
   
   <h3>System</h3>
   
-  <div style='display: block;'>
-    
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Boil Time</label>
-      <input type=text size=10 name=boil_time value=60>
-    </div>
-    
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Evap Rate</label>
-      <input type=text size=10 name=evap_rate value=0.05>
-    </div>
-  </div>
+  {% for column in system_columns %}
+    <div style='display: block;'>
+        <label style='display: block;'>{{ column }}</label>
 
+        {% if column == 'batch_size' %}
+        <input type=text class=system_input size=10 name={{ column }} value=5>
+        
+        {% elif column == 'extraction_efficiency' %}
+        <input type=text class=mash_input size=10 name={{ column }} value=73.5>
 
-  <div style='display: block;'>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Shrikage</label>
-      <input type=text size=10 name=shrinkage value=0.05>
-    </div>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Efficiency</label>
-      <input type=text size=10 name=efficiency value=0.70>
-    </div>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>B.K. Dead Space</label>
-      <input type=text size=15 name=boil_kettle_dead_space value=0.125>
-    </div>
-  </div>
+        {% endif %}
 
-  <div style='display: block;'>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Lauter Tun Dead Space</label>
-      <input type=text size=20 name=lauter_tun_dead_space value=0.125>
-    </div>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Mash Tun Dead Space</label>
-      <input type=text size=20 name=mash_tun_dead_space value=0.125>
-    </div>
-    <div style='display: inline-block;'>
-      <label style='display: block;'>Fermentation Tank Loss</label>
-      <input type=text size=20 name=fermentation_tank_loss value=0.125>
-    </div>
-  </div>
+        
+    </div>  
+
+    {% endfor %}
   
 </div>

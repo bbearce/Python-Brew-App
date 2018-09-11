@@ -49,7 +49,7 @@ function calc_og() {
     for (var i = 0; i < 5; i++) {
         lbs = $('input[name="weight_lbs'+(i+1).toString()+'"]').val()
         ppg = 1000*(fermentables_properties[i] - 1)
-        system_efficiency = Number($('input[name="efficiency"]').val())
+        system_efficiency = Number($('input[name="extraction_efficiency"]').val())/100
         ing_gravtiy = lbs*ppg*system_efficiency
 
         total_gravity = total_gravity + ing_gravtiy
@@ -90,14 +90,14 @@ function make_chart() {
                      document.getElementsByName('ingredient4')[0].value.substring(0,11),
                      document.getElementsByName('ingredient5')[0].value.substring(0,11)],
             datasets: [{
-                label: "My First dataset",
+                label: "Percent of Grain Bill",
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [100*parseInt(document.getElementsByName('weight_lbs1')[0].value)/total,
-                       100*parseInt(document.getElementsByName('weight_lbs2')[0].value)/total,
-                       100*parseInt(document.getElementsByName('weight_lbs3')[0].value)/total,
-                       100*parseInt(document.getElementsByName('weight_lbs4')[0].value)/total,
-                       100*parseInt(document.getElementsByName('weight_lbs5')[0].value)/total],
+                data: [100*parseFloat(document.getElementsByName('weight_lbs1')[0].value)/total,
+                       100*parseFloat(document.getElementsByName('weight_lbs2')[0].value)/total,
+                       100*parseFloat(document.getElementsByName('weight_lbs3')[0].value)/total,
+                       100*parseFloat(document.getElementsByName('weight_lbs4')[0].value)/total,
+                       100*parseFloat(document.getElementsByName('weight_lbs5')[0].value)/total],
             }]
         },
 

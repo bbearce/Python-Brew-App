@@ -144,14 +144,8 @@ class Recipe_System(db.Model):
     __tablename__ = 'gb_recipe_system'
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
-    boil_time = db.Column(db.Float)
-    evap_rate = db.Column(db.Float)
-    shrinkage = db.Column(db.Float)
-    efficiency = db.Column(db.Float)
-    boil_kettle_dead_space = db.Column(db.Float)
-    lauter_tun_dead_space = db.Column(db.Float)
-    mash_tun_dead_space = db.Column(db.Float)
-    fermentation_tank_loss = db.Column(db.Float)
+    batch_size = db.Column(db.Float)
+    extraction_efficiency = db.Column(db.Float)
 
     def __repr__(self):
         return '<System for recipe_id: %r>' % self.recipe_id
@@ -204,8 +198,15 @@ class Recipe_Water(db.Model):
     __tablename__ = 'gb_recipe_water'
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('gb_recipe_master.id', ondelete='CASCADE'), nullable=False)
+    total_boil_time = db.Column(db.Float)
+    evap_rate = db.Column(db.Float)
+    shrinkage = db.Column(db.Float)
+    mash_tun_dead_space = db.Column(db.Float)
+    lauter_tun_dead_space = db.Column(db.Float)
+    kettle_dead_space = db.Column(db.Float)
+    fermentation_tank_loss = db.Column(db.Float)
     grain_abs_factor = db.Column(db.Float)
-    gal = db.Column(db.Float)
+    
 
 
     def __repr__(self):

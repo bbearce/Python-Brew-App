@@ -24,14 +24,8 @@ $('#load').bind('click', function() {
     $('select[name="style"]').val(loaded_data['data']['Recipe']['gb_recipe_master']['style'])
 
     // System
-    $('input[name="boil_time"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['boil_time'])
-    $('input[name="evap_rate"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['evap_rate'])
-    $('input[name="shrinkage"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['shrinkage'])
-    $('input[name="efficiency"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['efficiency'])
-    $('input[name="boil_kettle_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['boil_kettle_dead_space'])
-    $('input[name="lauter_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['lauter_tun_dead_space'])
-    $('input[name="mash_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['mash_tun_dead_space'])
-    $('input[name="fermentation_tank_loss"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['fermentation_tank_loss'])
+    $('input[name="batch_size"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['batch_size'])
+    $('input[name="extraction_efficiency"]').val(loaded_data['data']['Recipe']['gb_recipe_system']['extraction_efficiency'])
 
     // Fermentables
     $('select[name="ingredient1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentables'][0]['ingredient'])
@@ -92,8 +86,15 @@ $('#load').bind('click', function() {
     $('input[name="liters_for_starter"]').val(loaded_data['data']['Recipe']['gb_recipe_yeast']['liters_for_starter'])
 
     // Water
+    $('input[name="total_boil_time"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['total_boil_time'])
+    $('input[name="evap_rate"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['evap_rate'])
+    $('input[name="shrinkage"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['shrinkage'])
+    $('input[name="mash_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['mash_tun_dead_space'])
+    $('input[name="lauter_tun_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['lauter_tun_dead_space'])
+    $('input[name="kettle_dead_space"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['kettle_dead_space'])
+    $('input[name="fermentation_tank_loss"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['fermentation_tank_loss'])
     $('input[name="grain_abs_factor"]').val(loaded_data['data']['Recipe']['gb_recipe_water']['grain_abs_factor'])
-
+    
     // Fermentation
     $('input[name="days1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['days1'])
     $('input[name="temp1"]').val(loaded_data['data']['Recipe']['gb_recipe_fermentation']['temp1'])

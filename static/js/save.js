@@ -9,14 +9,8 @@ $('#save').bind('click',
                style: $('select[name="style"]').val(),
 
                // System Table
-               boil_time: $('input[name="boil_time"]').val(),
-               evap_rate: $('input[name="evap_rate"]').val(),
-               shrinkage: $('input[name="shrinkage"]').val(),
-               efficiency: $('input[name="efficiency"]').val(),
-               boil_kettle_dead_space: $('input[name="boil_kettle_dead_space"]').val(),
-               lauter_tun_dead_space: $('input[name="lauter_tun_dead_space"]').val(),
-               mash_tun_dead_space: $('input[name="mash_tun_dead_space"]').val(),
-               fermentation_tank_loss: $('input[name="fermentation_tank_loss"]').val(),
+               batch_size: $('input[name="batch_size"]').val(),
+               extraction_efficiency: $('input[name="extraction_efficiency"]').val(),
 
                // Fermentables Table
                ingredient1: $('select[name="ingredient1"]').val(),
@@ -64,6 +58,13 @@ $('#save').bind('click',
                init_cells: $('input[name="init_cells"]').val(),
 
                // Water Table
+               total_boil_time: $('input[name="total_boil_time"]').val(),
+               evap_rate: $('input[name="evap_rate"]').val(),
+               shrinkage: $('input[name="shrinkage"]').val(),
+               mash_tun_dead_space: $('input[name="mash_tun_dead_space"]').val(),
+               lauter_tun_dead_space: $('input[name="lauter_tun_dead_space"]').val(),
+               kettle_dead_space: $('input[name="kettle_dead_space"]').val(),
+               fermentation_tank_loss: $('input[name="fermentation_tank_loss"]').val(),
                grain_abs_factor: $('input[name="grain_abs_factor"]').val(),
 
                // Fermentation Table

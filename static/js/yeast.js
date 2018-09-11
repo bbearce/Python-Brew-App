@@ -36,7 +36,7 @@ function calculate_yeast_output(){
 
     // Recommended Cell Count calculation
 
-    RCC = (10**9 * degree_plato * liter_batch_size) // [billions]
+    RCC = (1.16*10**9 * degree_plato * liter_batch_size) // [billions]
 
 }
 
@@ -46,7 +46,7 @@ function refresh_yeast() {
     calculate_yeast_output()
 
     $('#abv').text(ABV)
-    $('#og').text(OG)
+    $('#OG').text(OG)
     $('#fg').text(FG)
 
     $('#Yeast').text(yeast_name)

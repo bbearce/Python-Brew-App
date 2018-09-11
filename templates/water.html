@@ -2,18 +2,48 @@
   <div class='input-div'>
   
   <h3>Water</h3>
-
+  
+  {% for column in water_columns %}
     <div style='display: block;'>
+        <label style='display: block;'>{{ column }}</label>
 
-      <div style='display: inline-block;'>
-        <label style='display: block;'>Grain Absorption Factor</label>
-        <input type=text size=10 name=grain_abs_factor value=70.0>
-      </div>
+        {% if column == 'total_boil_time' %}
+        <input type=text class=water_input size=10 name={{ column }} value=60>
+        {% elif column == 'evap_rate' %}
+        <input type=text class=water_input size=10 name={{ column }} value=10>
+        {% elif column == 'shrinkage' %}
+        <input type=text class=water_input size=10 name={{ column }} value=4>
+        {% elif column == 'mash_tun_dead_space' %}
+        <input type=text class=water_input size=10 name={{ column }} value=0>
+        {% elif column == 'lauter_tun_dead_space' %}
+        <input type=text class=water_input size=10 name={{ column }} value=0.25>
+        {% elif column == 'kettle_dead_space' %}
+        <input type=text class=water_input size=10 name={{ column }} value=0>
+        {% elif column == 'fermentation_tank_loss' %}
+        <input type=text class=water_input size=10 name={{ column }} value=0.15>
+        {% elif column == 'grain_abs_factor' %}
+        <input type=text class=water_input size=10 name={{ column }} value=0.133>
 
-    </div>
+        {% endif %}
 
+        
+    </div>  
+
+    {% endfor %}
+  
   </div>
 
-  <div class='app-div'>stuff</div>
+  <div class='app-div'>
+
+  <h3>Water Summary</h3>
+      <h3>Mash Volume: <span id=mash_volume_water_duplicate>0.000</span></h3>    
+      <h3>Mash Out Volume: <span id=mash_out_vol_duplicate>0.000</span></h3>
+      <h3>Sparge Volume: <span id=sparge_vol>0.000</span></h3>
+
+  </div>
   
 </div>
+
+
+
+

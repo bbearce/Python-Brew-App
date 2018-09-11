@@ -97,6 +97,15 @@ def load():
         data['Recipe']['gb_recipe_fermentation'] = fermentation_dict
         data['Recipe']['gb_recipe_chemistry'] = chemistry_dict
 
+
+
+
+        ####### CONSIDER CLEANING BELOW COMPLETELY OUT #########
+
+
+
+
+
         # dict_string = "data = {'recipe':recipe,"
         # for s in system_columns:
         #     dict_string = dict_string + " '{}':System.{},".format(s,s)
@@ -187,6 +196,10 @@ def load():
         data['Constants']['gb_constants_yeast'] = yeast_dict
         data['Constants']['gb_constants_style'] = style_dict
         data['Constants']['gb_constants_gcc'] = gcc_list
+
+
+        ####### CONSIDER CLEANING ABOVE COMPLETELY OUT #########
+
 
         return jsonify(data=data)
 
@@ -431,8 +444,9 @@ def index():
                            Hops = Hops,
                            Yeast = Yeast,
 
-                           fermentables_columns=fcolumns,
-                           hops_columns=hcolumns,
+                           system_columns=system_columns,
+                           fermentables_columns=fcolumns, # look above for special variable construction
+                           hops_columns=hcolumns, # look above for special variable construction
                            mash_columns=mash_columns,
                            yeast_columns=yeast_columns,
                            water_columns=water_columns,
