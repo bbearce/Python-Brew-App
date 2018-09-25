@@ -22,8 +22,6 @@ function get_water_info(){
 
     // [1] Pre-Boil Volume
 
-    batch_size
-
     PBV = ( (batch_size + kettle_dead_space + fermentation_tank_loss)/(1 - shrinkage/100) ) / 
           (1 - ((evap_rate/100)*(total_boil_time/60)))
 
@@ -85,7 +83,7 @@ function refresh_water(){
 
     $("#mash_volume_water_duplicate").text(mash_volume)
     $("#mash_out_vol_duplicate").text(mash_out_volume)
-    $("#sparge_vol").text(SV)
+    $("#sparge_vol").text(SVPMO)
 
     make_water_chart()
 

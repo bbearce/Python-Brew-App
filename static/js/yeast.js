@@ -21,7 +21,8 @@ function calculate_yeast_output(){
     // Retrieve needed inputs
     OG = parseFloat($('#OG').text())
     attenuation = yeast_properties.attenuation
-    batch_size = 5
+    // From System
+    batch_size = parseFloat($('input[name="batch_size"').val()) //Gal
     liter_batch_size = batch_size*3.785 // batch_size*[liters/gallon]
 
     // Final Gravity
@@ -40,6 +41,37 @@ function calculate_yeast_output(){
 
 }
 
+function make_yeast_chart() {
+
+    // Remove previous chart
+    var elem = document.getElementById("yeastChart");
+    elem.remove();
+    var elem = document.getElementsByClassName("chartjs-size-monitor");
+    if(elem.length != 0){
+        elem[0].remove();
+    }else{console.log('Note from yeast: initial yeast chart')}
+
+    var canvas = document.createElement('canvas');
+    canvas.id = 'yeastChart'
+    var div = document.getElementsByClassName("yeastChartDiv")
+    div[0].appendChild(canvas)
+
+    var ctx = document.getElementById('yeastChart').getContext('2d');
+    var myBarChart = new Chart(ctx,{
+        "type":"bar",
+        "data":{"labels":["Predicted","Low","High","Barley Wine High"],
+        "datasets":[{
+            "label":"ABV",
+            "data":[ABV,3,10,17],
+            "fill":false,
+            "backgroundColor":["rgba(255, 159, 64, 0.5)","rgba(201, 203, 207, 0.2)","rgba(201, 203, 207, 0.2)","rgba(201, 203, 207, 0.2)"],
+            "borderColor":["rgb(255, 159, 64)","rgb(201, 203, 207)","rgb(201, 203, 207)","rgba(201, 203, 207)"],
+            "borderWidth":1}]
+         },
+        "options":{"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}}});
+
+}
+
 function refresh_yeast() {
 
     get_yeast_info()
@@ -52,6 +84,8 @@ function refresh_yeast() {
     $('#Yeast').text(yeast_name)
     $('#Attenuation').text(yeast_properties.attenuation)
     $('#Pitch_Rate_Recommended').text(RCC/10**9)
+
+    make_yeast_chart()
 
 }
 
@@ -81,4 +115,16 @@ for (var i=0, max=5; i < max; i++) {
 
 
 }
+
+// Things to watch from system
+system_array = document.getElementsByClassName('system_input')
+for (var i=0, max=system_array.length; i < max; i++) {
+    // Do something with the element here
+    system_array[i].addEventListener("input", function() {
+    refresh_yeast()
+
+    });
+
+}
+
 

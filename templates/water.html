@@ -10,17 +10,17 @@
         {% if column == 'total_boil_time' %}
         <input type=text class=water_input size=10 name={{ column }} value=60>
         {% elif column == 'evap_rate' %}
-        <input type=text class=water_input size=10 name={{ column }} value=10>
+        <input type=text class=water_input size=10 name={{ column }} value=15>
         {% elif column == 'shrinkage' %}
         <input type=text class=water_input size=10 name={{ column }} value=4>
         {% elif column == 'mash_tun_dead_space' %}
         <input type=text class=water_input size=10 name={{ column }} value=0>
         {% elif column == 'lauter_tun_dead_space' %}
-        <input type=text class=water_input size=10 name={{ column }} value=0.25>
+        <input type=text class=water_input size=10 name={{ column }} value=0.5>
         {% elif column == 'kettle_dead_space' %}
-        <input type=text class=water_input size=10 name={{ column }} value=0>
+        <input type=text class=water_input size=10 name={{ column }} value=0.5>
         {% elif column == 'fermentation_tank_loss' %}
-        <input type=text class=water_input size=10 name={{ column }} value=0.15>
+        <input type=text class=water_input size=10 name={{ column }} value=0.25>
         {% elif column == 'grain_abs_factor' %}
         <input type=text class=water_input size=10 name={{ column }} value=0.133>
 
@@ -42,7 +42,7 @@
 
     <!-- Chart Code -->
 
-    <div class=waterChartDiv  style='width: 90%;'>
+    <div class=waterChartDiv  style='width: 70%;'>
     <canvas id="waterChart"></canvas>
     </div>
 

@@ -33,6 +33,7 @@ class Fermentables(db.Model):
     ppg = db.Column(db.Float)
     srm = db.Column(db.Float)
     ez_water_code = db.Column(db.Integer)
+    distilled_water_ph = db.Column(db.Float)
     flavor_profile = db.Column(db.Text)
     dp = db.Column(db.Integer)
     is_grain = db.Column(db.Integer)

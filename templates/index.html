@@ -5,6 +5,7 @@
     <title>Ajax Test with jQuery</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="../static/css/my_styles.css">
 </head>
 
@@ -40,37 +41,85 @@
 <input id=save type="button" value="Save"> 
 <input id=delete type="button" value="Delete"> 
 
-<!-- System Section -->
-{% include 'system.html' %}
-
-<!-- Fermentables Section -->
-{% include 'fermentables.html' %}
-
-<!-- Hops Section -->
-{% include 'hops.html' %}
-
-<!-- Mash Section -->
-{% include 'mash.html' %}
-
-<!-- Yeast Section -->
-{% include 'yeast.html' %}
-
-<!-- Water Section -->
-{% include 'water.html' %}
-
-<!-- Fermentation Section -->
-{% include 'fermentation.html' %}
-
-<!-- Chemistry Section -->
-{% include 'chemistry.html' %}
 
 
+<!-- Tabs -->
+<script type="text/javascript">
+    function openTab(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+</script>
+
+<br><br>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'System_Tab')">System</button>
+    <button class="tablinks" onclick="openTab(event, 'Fermentables_Tab')">Fermentables</button>
+    <button class="tablinks" onclick="openTab(event, 'Hops_Tab')">Hops</button>
+    <button class="tablinks" onclick="openTab(event, 'Mash_Tab')">Mash</button>
+    <button class="tablinks" onclick="openTab(event, 'Yeast_Tab')">Yeast</button>
+    <button class="tablinks" onclick="openTab(event, 'Water_Tab')">Water</button>
+    <button class="tablinks" onclick="openTab(event, 'Fermentation_Tab')">Fermentation</button>
+    <button class="tablinks" onclick="openTab(event, 'Chemistry_Tab')">Chemistry</button>
+    
+</div>
 
 
+<div id="System_Tab" class="tabcontent">
+    <!-- System Section -->
+    {% include 'system.html' %}
+</div>
+
+<div id="Fermentables_Tab" class="tabcontent" style="display:none">
+    <!-- Fermentables Section -->
+    {% include 'fermentables.html' %}
+</div>
+
+<div id="Hops_Tab" class="tabcontent" style="display:none">
+    <!-- Hops Section -->
+    {% include 'hops.html' %}
+</div>
+
+<div id="Mash_Tab" class="tabcontent" style="display:none">
+    <!-- Mash Section -->
+    {% include 'mash.html' %}
+</div>
+
+<div id="Yeast_Tab" class="tabcontent" style="display:none">
+    <!-- Yeast Section -->
+    {% include 'yeast.html' %}
+</div>
+
+<div id="Water_Tab" class="tabcontent" style="display:none">
+    <!-- Water Section -->
+    {% include 'water.html' %}
+</div>
+
+<div id="Fermentation_Tab" class="tabcontent" style="display:none">
+    <!-- Fermentation Section -->
+    {% include 'fermentation.html' %}
+</div>
+
+<div id="Chemistry_Tab" class="tabcontent" style="display:none">
+    <!-- Chemistry Section -->
+    {% include 'chemistry.html' %}
+</div>
+
+
+<!-- End Tabs -->
 
 <br><br><br>
-<label style='display: block;'>App Area</label>
-<span id=app style='border-style: solid;'>initial state</span>
 
 <!-- App Scripts -->
 <script src="../static/js/fermentables.js"></script>
@@ -78,6 +127,8 @@
 <script src="../static/js/mash.js"></script>
 <script src="../static/js/yeast.js"></script>
 <script src="../static/js/water.js"></script>
+<script src="../static/js/fermentation.js"></script>
+<script src="../static/js/chemistry.js"></script>
 
 <!-- Load Script -->
 <script src="../static/js/load.js"></script>

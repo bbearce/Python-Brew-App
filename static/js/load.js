@@ -146,10 +146,6 @@ $('#load').bind('click', function() {
 
     // Fermentation
 
-
-
-    // App Area
-    $('#app').text(loaded_data['data']['Recipe']['gb_recipe_master']['recipe'])
     
     
     }

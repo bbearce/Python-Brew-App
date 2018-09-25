@@ -2,18 +2,18 @@
 function calc_percent_of_total() {
 
     // Grab weights and calculate total weight
-    var weights = [];
-    var total = 0;
+    fermentable_weights = [];
+    total = 0;
     for (i = 1; i < 6; i++) { 
-        weights.push(document.getElementsByName('weight_lbs'+String(i))[0].value)
-        total += parseFloat(weights[i-1])
+        fermentable_weights.push(document.getElementsByName('weight_lbs'+String(i))[0].value)
+        total += parseFloat(fermentable_weights[i-1])
     }
 
 
     // Calculate the percent of totals for each weight
     var percent_of_totals = [];
-    for (var i = 0; i < weights.length; i++) {
-        percent_of_totals.push(100*weights[i]/total)
+    for (var i = 0; i < fermentable_weights.length; i++) {
+        percent_of_totals.push(100*fermentable_weights[i]/total)
     }
 
     return total;
@@ -28,6 +28,7 @@ function calc_og() {
         ingredients.push($('select[name="ingredient'+(i+1).toString()+'"]').val())
     }
 
+//
     fermentables_properties = []
     for (i in ingredients) {
 
@@ -38,17 +39,29 @@ function calc_og() {
         for (var i = 0; i < Data['Constants']['gb_constants_fermentables'].length; i++){
           // look for the entry with a matching `code` value
           if (Data['Constants']['gb_constants_fermentables'][i].ingredients == ingredient){
-             fermentables_properties.push(Data['Constants']['gb_constants_fermentables'][i]['ppg'])
+             fermentables_properties.push({ingredient:Data['Constants']['gb_constants_fermentables'][i]['ingredients'],
+                                           degree_linter:Data['Constants']['gb_constants_fermentables'][i]['degree_linter'],
+                                           value:Data['Constants']['gb_constants_fermentables'][i]['value'],
+                                           ppg:Data['Constants']['gb_constants_fermentables'][i]['ppg'],
+                                           srm:Data['Constants']['gb_constants_fermentables'][i]['srm'],
+                                           ez_water_code:Data['Constants']['gb_constants_fermentables'][i]['ez_water_code'],
+                                           distilled_water_ph:Data['Constants']['gb_constants_fermentables'][i]['distilled_water_ph'],
+                                           flavor_profile:Data['Constants']['gb_constants_fermentables'][i]['flavor_profile'],
+                                           dp:Data['Constants']['gb_constants_fermentables'][i]['dp'],
+                                           is_grain:Data['Constants']['gb_constants_fermentables'][i]['is_grain']
+                                         })
             // obj[i].name is the matched result
           }
         }
     } 
 
+//
+
 
     total_gravity = 0;
     for (var i = 0; i < 5; i++) {
         lbs = $('input[name="weight_lbs'+(i+1).toString()+'"]').val()
-        ppg = 1000*(fermentables_properties[i] - 1)
+        ppg = 1000*(fermentables_properties[i]['ppg'] - 1)
         system_efficiency = Number($('input[name="extraction_efficiency"]').val())/100
         ing_gravtiy = lbs*ppg*system_efficiency
 

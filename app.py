@@ -141,61 +141,61 @@ def load():
 
         ### Constants Data ###
 
-        fermentables_list = []
-        for F in data['Recipe']['gb_recipe_fermentables']:
-            fermentable = models.Fermentables.query.filter_by(ingredients =F['ingredient']).first()
-            fermentables_dict = {}
-            count=1;
-            for f in fermentable.__table__.columns._data:
-                if count != 1:
-                    fermentables_dict[f] = getattr(fermentable, f)
-                count = count+1;
-            fermentables_list.append(fermentables_dict)
+        # fermentables_list = []
+        # for F in data['Recipe']['gb_recipe_fermentables']:
+        #     fermentable = models.Fermentables.query.filter_by(ingredients =F['ingredient']).first()
+        #     fermentables_dict = {}
+        #     count=1;
+        #     for f in fermentable.__table__.columns._data:
+        #         if count != 1:
+        #             fermentables_dict[f] = getattr(fermentable, f)
+        #         count = count+1;
+        #     fermentables_list.append(fermentables_dict)
 
-        hops_list = []
-        for H in data['Recipe']['gb_recipe_hops']:
-            hop = models.Hops.query.filter_by(hops =H['hop']).first()
-            hops_dict = {}
-            count=1;
-            for h in hop.__table__.columns._data:
-                if count != 1:
-                    hops_dict[f] = getattr(hop, h)
-                count = count+1;
-            hops_list.append(hops_dict)
+        # hops_list = []
+        # for H in data['Recipe']['gb_recipe_hops']:
+        #     hop = models.Hops.query.filter_by(hops =H['hop']).first()
+        #     hops_dict = {}
+        #     count=1;
+        #     for h in hop.__table__.columns._data:
+        #         if count != 1:
+        #             hops_dict[f] = getattr(hop, h)
+        #         count = count+1;
+        #     hops_list.append(hops_dict)
 
-        yeast = models.Yeast.query.filter_by(yeastStrain = data['Recipe']['gb_recipe_yeast']['yeast_name']).first()
-        yeast_dict = {}
-        count=1;
-        for y in yeast.__table__.columns._data:
-            if count != 1:
-                yeast_dict[y] = getattr(yeast, y)
-            count = count + 1;
+        # yeast = models.Yeast.query.filter_by(yeastStrain = data['Recipe']['gb_recipe_yeast']['yeast_name']).first()
+        # yeast_dict = {}
+        # count=1;
+        # for y in yeast.__table__.columns._data:
+        #     if count != 1:
+        #         yeast_dict[y] = getattr(yeast, y)
+        #     count = count + 1;
 
-        style = models.Styles.query.filter_by(styles = data['Recipe']['gb_recipe_master']['style']).first()
-        style_dict = {}
-        count=1;
-        for s in style.__table__.columns._data:
-            if count != 1:
-                style_dict[s] = getattr(style, s)
-            count = count + 1;
+        # style = models.Styles.query.filter_by(styles = data['Recipe']['gb_recipe_master']['style']).first()
+        # style_dict = {}
+        # count=1;
+        # for s in style.__table__.columns._data:
+        #     if count != 1:
+        #         style_dict[s] = getattr(style, s)
+        #     count = count + 1;
 
-        gcc_list = []
-        for G in models.gravity_correction_chart.query.all():
-            gcc_dict = {}
-            count=1;
-            for g in G.__table__.columns._data:
-                if count != 1:
-                    gcc_dict[g] = getattr(G, g)
-                count = count+1;
-            gcc_list.append(gcc_dict)
+        # gcc_list = []
+        # for G in models.gravity_correction_chart.query.all():
+        #     gcc_dict = {}
+        #     count=1;
+        #     for g in G.__table__.columns._data:
+        #         if count != 1:
+        #             gcc_dict[g] = getattr(G, g)
+        #         count = count+1;
+        #     gcc_list.append(gcc_dict)
 
-        data['Constants'] = {}
+        # data['Constants'] = {}
 
-        data['Constants']['gb_constants_fermentables'] = fermentables_list
-        data['Constants']['gb_constants_hops'] = hops_list
-        data['Constants']['gb_constants_yeast'] = yeast_dict
-        data['Constants']['gb_constants_style'] = style_dict
-        data['Constants']['gb_constants_gcc'] = gcc_list
+        # data['Constants']['gb_constants_fermentables'] = fermentables_list
+        # data['Constants']['gb_constants_hops'] = hops_list
+        # data['Constants']['gb_constants_yeast'] = yeast_dict
+        # data['Constants']['gb_constants_style'] = style_dict
+        # data['Constants']['gb_constants_gcc'] = gcc_list
 
 
         ####### CONSIDER CLEANING ABOVE COMPLETELY OUT #########

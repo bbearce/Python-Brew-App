@@ -7,7 +7,7 @@ function get_hop_info(){
     }
 
     hops_properties = []
-    for (i in hops) {
+    for (i in hops) {//
 
         var hop = hops[i]
 
@@ -17,21 +17,21 @@ function get_hop_info(){
           // look for the entry with a matching `code` value
           if (Data['Constants']['gb_constants_hops'][i].hops == hop){
              hops_properties.push({hop_name:hop,
-                              alphaAcid:Data['Constants']['gb_constants_hops'][i]['alphaAcid'],
-                              berry:Data['Constants']['gb_constants_hops'][i]['berry'],
-                              citrus:Data['Constants']['gb_constants_hops'][i]['citrus'],
-                              tart:Data['Constants']['gb_constants_hops'][i]['tart'],
-                              flowery:Data['Constants']['gb_constants_hops'][i]['flowery'],
-                              earthy:Data['Constants']['gb_constants_hops'][i]['earthy'],
-                              pine:Data['Constants']['gb_constants_hops'][i]['pine'],
-                              spicy:Data['Constants']['gb_constants_hops'][i]['spicy'],
-                              bitter:Data['Constants']['gb_constants_hops'][i]['bitter']
-                             })
+                                   alphaAcid:Data['Constants']['gb_constants_hops'][i]['alphaAcid'],
+                                   berry:Data['Constants']['gb_constants_hops'][i]['berry'],
+                                   citrus:Data['Constants']['gb_constants_hops'][i]['citrus'],
+                                   tart:Data['Constants']['gb_constants_hops'][i]['tart'],
+                                   flowery:Data['Constants']['gb_constants_hops'][i]['flowery'],
+                                   earthy:Data['Constants']['gb_constants_hops'][i]['earthy'],
+                                   pine:Data['Constants']['gb_constants_hops'][i]['pine'],
+                                   spicy:Data['Constants']['gb_constants_hops'][i]['spicy'],
+                                   bitter:Data['Constants']['gb_constants_hops'][i]['bitter']
+                                 })
 
             // obj[i].name is the matched result
           }
         }
-    }
+    }//
 }
 
 function calc_ibu(){
@@ -41,12 +41,12 @@ function calc_ibu(){
   // retrieve utilization for each hop
 
   // [1] boil_times first 
-  weights = []
+  hop_weights = []
   boil_times = []
   utilizations= []
   for (var i = 0; i < 3; i++) {
       boil_times.push(parseInt($('input[name="boil_time_min'+(i+1).toString()+'"]').val()))
-      weights.push(parseFloat($('input[name="weight_oz'+(i+1).toString()+'"]').val()))
+      hop_weights.push(parseFloat($('input[name="weight_oz'+(i+1).toString()+'"]').val()))
       
       // Go look for that boil time in utilization_table
       for (var j = 0; j < Data['Constants']['gb_constants_ut'].length; j++){
@@ -73,7 +73,7 @@ function calc_ibu(){
   ibus = []
   for (var i = 0; i < 3; i++) {
     
-    ibu = ( (weights[i])*(utilizations[i]/100)*(hops_properties[i]['alphaAcid']/100)*7489 ) / ( (batch_size)*(Cgravity) )
+    ibu = ( (hop_weights[i])*(utilizations[i]/100)*(hops_properties[i]['alphaAcid']/100)*7489 ) / ( (batch_size)*(Cgravity) )
 
     ibus.push(ibu)
   }
