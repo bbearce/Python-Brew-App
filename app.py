@@ -1,6 +1,7 @@
+import os
 from flask import Flask, flash, jsonify, render_template, request, redirect, url_for
 from flask_script import Manager
-import psycopg2, pdb, json
+import psycopg2, json #pdb
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
